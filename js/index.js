@@ -1,3 +1,4 @@
+GGrobee = document.querySelector('#GGrobee');
 About = document.querySelector('#About');
 What = document.querySelector('#What');
 How = document.querySelector('#How');
@@ -5,6 +6,10 @@ SDGS = document.querySelector('#SDGS');
 Com = document.querySelector('#Com');
 
 iframe = document.querySelector('#iframe');
+
+GGrobee.addEventListener('click', function() {
+  iframe.src = 'asset/ggrobee.html';
+});
 
 About.addEventListener('click', function() {
     iframe.src = 'asset/about.html';
