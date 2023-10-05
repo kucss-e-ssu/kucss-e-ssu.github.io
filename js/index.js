@@ -8,6 +8,7 @@ Com = document.querySelector('#Com');
 iframe = document.querySelector('#iframe');
 
 GGrobee.addEventListener('click', function() {
+  // iframe.setAttribute('src', 'asset/ggrobee.html');
   iframe.src = 'asset/ggrobee.html';
 });
 

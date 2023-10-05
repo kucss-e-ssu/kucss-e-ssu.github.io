@@ -9,7 +9,7 @@ h3 = document.querySelector('#status');
 
 if (month === 10) {
   GGrobee.setAttribute('src', 'https://png.pngtree.com/element_our/20200702/ourmid/pngtree-bean-sprouts-plant-seeds-germination-image_2284265.jpg');
-  h3.innerHTML = '씨앗 단계';
+  h3.innerHTML = '1 grade : Waste';
 }
 
 if (month === 11) {
