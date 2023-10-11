@@ -8,6 +8,7 @@ GGrobee_src = GGrobee.getAttribute('src');
 h3 = document.querySelector('#status');
 
 if (month === 10) {
+  GGrobee.border = '10 sold green'; // 이미지의 테두리를 없애는 스타일을 적용
   GGrobee.setAttribute('src', '../images/ggrobee.jpeg');
   h3.innerHTML = '1 grade : Waste';
 }

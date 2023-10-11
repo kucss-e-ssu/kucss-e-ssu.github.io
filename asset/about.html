@@ -4,16 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <style>
+    .centered-text {
+      text-align: center;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 images per row */
+      gap: 10px;
+    }
+    .image-grid img {
+      max-width: 100%; height: auto;
+      width: 100%; /* Set image width to 100% of the container */
+    }
+
+    @media (max-width: 768px) {
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr); /* 1 image per row on smaller screens */
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container mt-5">
-    <h3>What is GGrobee?</h3>
-    <p>'GGrobee’ is a character born from the Khmer word ‘Kroap’, which means seed.</p>
-    <p>Crop is a seed character created to prevent the natural environment from deteriorating and make Cambodia a clean country.</p>
-    <p>In the process of growing, Crop goes through various obstacles and trials across four stages: waste, air pollution, water pollution, and sustainable development.</p>
-    <p>If Crop solves the problems that hinder him as he grows, he will eventually grow into something wonderful and protect the Earth's environment.</p>
-    <p>Would we all join in solving environmental problems so that Crop can grow into a wonderful person and achieve the goal of creating a clean planet?</p>
-    <!-- <img src="" alt="GGrobee의 일생기"> -->
+    <h3 class="centered-text">What is GGrobee?</h3>
+    <p class="centered-text">'GGrobee’ is a character born from the Khmer word ‘Kroap’, which means seed.</p>
+    <p class="centered-text">Crop is a seed character created to prevent the natural environment from deteriorating and make Cambodia a clean country.</p>
+    <p class="centered-text">In the process of growing, Crop goes through various obstacles and trials across four stages: waste, air pollution, water pollution, and sustainable development.</p>
+    <p class="centered-text">If Crop solves the problems that hinder him as he grows, he will eventually grow into something wonderful and protect the Earth's environment.</p>
+    <p class="centered-text">Would we all join in solving environmental problems so that Crop can grow into a wonderful person and achieve the goal of creating a clean planet?</p>
+    <div class="image-grid centered-text">
+      <img src="https://i.namu.wiki/i/NIF9xkDtloxIIjCThnYBSx4dzHa6qc-Thc1m2rh0T_ulQkCCbx7h9kWwCmihqC5TJjiwrqpiRHt6Q79sB7dmXhLrusbDGI2FKy-RBmg1zEoH0aKKKL1esHM29YKmTBMiRbaAyw0ePWWpu2dCkZQR0w.webp" style="max-width: 100%; height: auto;">
+      <img src="https://i.namu.wiki/i/NIF9xkDtloxIIjCThnYBSx4dzHa6qc-Thc1m2rh0T_ulQkCCbx7h9kWwCmihqC5TJjiwrqpiRHt6Q79sB7dmXhLrusbDGI2FKy-RBmg1zEoH0aKKKL1esHM29YKmTBMiRbaAyw0ePWWpu2dCkZQR0w.webp" style="max-width: 100%; height: auto;">
+      <img src="https://i.namu.wiki/i/NIF9xkDtloxIIjCThnYBSx4dzHa6qc-Thc1m2rh0T_ulQkCCbx7h9kWwCmihqC5TJjiwrqpiRHt6Q79sB7dmXhLrusbDGI2FKy-RBmg1zEoH0aKKKL1esHM29YKmTBMiRbaAyw0ePWWpu2dCkZQR0w.webp" style="max-width: 100%; height: auto;">
+      <img src="https://i.namu.wiki/i/NIF9xkDtloxIIjCThnYBSx4dzHa6qc-Thc1m2rh0T_ulQkCCbx7h9kWwCmihqC5TJjiwrqpiRHt6Q79sB7dmXhLrusbDGI2FKy-RBmg1zEoH0aKKKL1esHM29YKmTBMiRbaAyw0ePWWpu2dCkZQR0w.webp" style="max-width: 100%; height: auto;">
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
