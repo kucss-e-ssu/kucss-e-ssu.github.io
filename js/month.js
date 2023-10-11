@@ -8,7 +8,7 @@ GGrobee_src = GGrobee.getAttribute('src');
 h3 = document.querySelector('#status');
 
 if (month === 10) {
-  GGrobee.setAttribute('src', 'https://png.pngtree.com/element_our/20200702/ourmid/pngtree-bean-sprouts-plant-seeds-germination-image_2284265.jpg');
+  GGrobee.setAttribute('src', '../images/ggrobee.jpeg');
   h3.innerHTML = '1 grade : Waste';
 }
 
