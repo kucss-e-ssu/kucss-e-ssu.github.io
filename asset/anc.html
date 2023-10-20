@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,69 +24,82 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>공지사항</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>대상</th>
-                    <th>날짜</th>
-                    <th>조회수</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><a href="Announcement/plogging.html">1</a></td>
-                    <td><a href="Announcement/plogging.html">plogging event</a></td>
-                    <td>7~12 grade</a></td>
-                    <td>from waste class to next class</a></td>
-                    <td>조회수</td>
-                  </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
-        <hr />
-    </div>
 
-    <div class="navbar-expand-lg bg-success" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-        <div class="container" style="display: flex; flex-wrap: wrap; justify-content: center; height: 150px; align-items: center;">
-          <div style="text-align: center;">
-            <div style="display: flex; align-items: center; margin-right: 20px;">
-                <a href="mailto:camforssu@gmail.com">
-                    <span>
-                        <i class="fas fa-envelope" style="margin-right: 5px;"></i>
-                    </span>
-                </a>
-            </div>
+  <div class="container">
+    <h2>공지사항</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>대상</th>
+          <th>날짜</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="Announcement/plogging.html" onclick="increaseCount(this)">1</a></td>
+          <td><a href="Announcement/plogging.html" onclick="increaseCount(this)">plogging event</a></td>
+          <td>7~12 grade</td>
+          <td>from waste class to next class</td>
+          <td><span>0</span></td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+    <hr />
+  </div>
+
+  <div class="navbar-expand-lg bg-success"
+    style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: center; height: 150px; align-items: center;">
+      <div style="text-align: center;">
+        <div style="display: flex; align-items: center; margin-right: 20px;">
+          <a href="mailto:camforssu@gmail.com">
+            <span>
+              <i class="fas fa-envelope" style="margin-right: 5px;"></i>
+            </span>
+          </a>
         </div>
-        <div style="text-align: center;">
-          <div style="display: flex; align-items: center; margin-right: 20px;">
-              <a href="https://www.instagram.com/kucss_e_ssu/"target="_blank">
-                  <span>
-                      <i class="fab fa-instagram" style="margin-right: 5px;"></i>
-                  </span>
-              </a>
-          </div>
-      </div>    
-            <div style="text-align: center;">
-                <div style="display: flex; align-items: center; margin-right: 20px;">
-                    <a href="https://www.facebook.com/people/%EC%AD%98%EB%A6%BD%EC%8A%88%EC%96%B4/pfbid0sFj9WiiWvx98jw1AczLARFZbDoCRMVXtQQYqLFbMgdQ8nZSpM2QE8PAfizUwbdu5l/?mibextid=LQQJ4d"target="_blank">
-                      <span>
-                        <i class="fab fa-facebook-f" style="margin-right: 5px;"></i>
-                    </span> 
-                    </a>
-                </div>
-            </div>
-            <div>
-              <h6 style="text-align: center;">ⓒ쭘립슈어</h6>
-              <h6> Hosanna School Enviorment Volunteer</h6>
-            </div>
+      </div>
+      <div style="text-align: center;">
+        <div style="display: flex; align-items: center; margin-right: 20px;">
+          <a href="https://www.instagram.com/kucss_e_ssu/" target="_blank">
+            <span>
+              <i class="fab fa-instagram" style="margin-right: 5px;"></i>
+            </span>
+          </a>
         </div>
+      </div>
+      <div style="text-align: center;">
+        <div style="display: flex; align-items: center; margin-right: 20px;">
+          <a
+            href="https://www.facebook.com/people/%EC%AD%98%EB%A6%BD%EC%8A%88%EC%96%B4/pfbid0sFj9WiiWvx98jw1AczLARFZbDoCRMVXtQQYqLFbMgdQ8nZSpM2QE8PAfizUwbdu5l/?mibextid=LQQJ4d"
+            target="_blank">
+            <span>
+              <i class="fab fa-facebook-f" style="margin-right: 5px;"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h6 style="text-align: center;">ⓒ쭘립슈어</h6>
+        <h6> Hosanna School Enviorment Volunteer</h6>
+      </div>
     </div>
-    
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    </body>
-    </html>
-    
+  </div>
+
+  <script>
+    function increaseCount(element) {
+      var countElement = element.parentNode.parentNode.querySelector('td:last-of-type span');
+      var count = parseInt(countElement.textContent);
+      countElement.textContent = (count + 1).toString();
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+
+</html>
