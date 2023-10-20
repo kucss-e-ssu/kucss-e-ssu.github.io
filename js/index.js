@@ -1,9 +1,9 @@
 GGrobee = document.querySelector('#GGrobee');
 About = document.querySelector('#About');
 What = document.querySelector('#What');
-How = document.querySelector('#How');
 SDGS = document.querySelector('#SDGS');
 Com = document.querySelector('#Com');
+anc = document.querySelector('#anc');
 
 iframe = document.querySelector('#iframe');
 
@@ -20,14 +20,14 @@ What.addEventListener('click', function() {
     iframe.src = 'asset/pollution.html';
 });
 
-How.addEventListener('click', function() {
-  iframe.src = 'asset/solve.html';
-});
-
 SDGS.addEventListener('click', function() {
   iframe.src = 'asset/sdgs.html';
 });
 
 Com.addEventListener('click', function() {
   iframe.src = 'asset/com.html';
+});
+
+anc.addEventListener('click', function() {
+  iframe.src = 'asset/anc.html';
 });
