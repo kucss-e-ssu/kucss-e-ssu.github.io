@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .game-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      border: 2px solid black;
+    }
+
+    .player {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background-image: url('/images/ggrobee-removebg.jpg');
+      background-size: cover;
+    }
+
+    .poop {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+    }
+
+    .blue {
+        position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background-image: url('/images/eco.png');
+      background-size: cover;
+    }
+
+    .red {
+           position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background-image: url('/images/trash.png');
+      background-size: cover;
+    }
+
+    .score {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body style="touch-action: none; overflow: scroll;">
+  <div class="game-container">
+    <div class="player"></div>
+  </div>
+  <div class="score">점수: 0</div>
+  <button onclick="startGame()">시작</button>
+  <button onclick="endGame()">종료</button>
+
+  <!-- JavaScript 코드가 들어갈 부분 -->
+  <script>
+    const gameContainer = document.querySelector('.game-container');
+    const player = document.querySelector('.player');
+    const scoreElement = document.querySelector('.score');
+    let score = 0;
+    let isGameOver = false;
+    let poops = [];
+    let touchTimeout;
+    
+    function startGame() {
+      setInterval(createPoop, 200);//더 빈번한 간격으로 createpoop 함수 호출
+      gameContainer.addEventListener('touchstart', handleTouchStart);
+      gameContainer.addEventListener('touchend', handleTouchEnd);
+    }
+
+    function endGame() {
+      isGameOver = true;
+      alert('게임 종료! 최종 점수: ' + score);
+      window.location.reload();
+    }
+
+    function createPoop() {
+      const poop = document.createElement('div');
+      const isBlue = Math.random() >= 0.5;
+      poop.classList.add('poop', isBlue ? 'blue' : 'red');
+      gameContainer.appendChild(poop);
+      const randomPosition = Math.floor(Math.random() * 300);
+      poop.style.left = randomPosition + 'px';
+      poops.push(poop);
+      movePoop(poop, isBlue);
+    }
+
+    function handleTouchStart(e) {
+      const screenCenter = window.innerWidth / 2;
+      if (e.touches[0].clientX < screenCenter) {
+        touchTimeout = setInterval(moveLeft, 100);
+      } else {
+        touchTimeout = setInterval(moveRight, 100);
+      }
+      e.preventDefault();
+    }
+
+    function handleTouchEnd() {
+      clearInterval(touchTimeout);
+    }
+
+    function moveLeft() {
+      let leftPosition = parseInt(window.getComputedStyle(player).getPropertyValue('left'));
+      if (leftPosition > 0) {
+        player.style.left = leftPosition - 10 + 'px';
+      }
+    }
+
+    function moveRight() {
+      let leftPosition = parseInt(window.getComputedStyle(player).getPropertyValue('left'));
+      if (leftPosition < 300) {
+        player.style.left = leftPosition + 10 + 'px';
+      }
+    }
+
+    function movePoop(poop, isBlue) {
+      let topPosition = 0;
+      const poopInterval = setInterval(() => {
+        topPosition += 15;//떨어지는 속도 더 빠르게 
+        poop.style.top = topPosition + 'px';
+
+        if (isCollide(poop, player)) {
+          if (isBlue) {
+            score++;
+            scoreElement.textContent = '점수: ' + score;
+          } else {
+            endGame();
+          }
+          poop.remove();
+        }
+
+        if (topPosition > 800) { //더 많은 개수가 떨어지게
+          clearInterval(poopInterval);
+          poop.remove();
+        }
+      }, 100);//인터벌 시간이 줄어들게
+    }
+
+    function isCollide(a, b) {
+      const aRect = a.getBoundingClientRect();
+      const bRect = b.getBoundingClientRect();
+
+      return !(
+        aRect.top > bRect.bottom ||
+        aRect.bottom < bRect.top ||
+        aRect.right < bRect.left ||
+        aRect.left > bRect.right
+      );
+    }
+  </script>
+</body>
+</html>
