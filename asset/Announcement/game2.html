@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #game-container {
+      position: relative;
+      width: 400px;
+      height: 150px;
+      margin: 0 auto;
+      border: 2px solid black;
+      overflow: hidden;
+    }
+
+    #dino {
+      width: 50px;
+      height: 50px;
+      background-color: #f00;
+      position: absolute;
+      bottom: 0;
+      left: 50px;
+    }
+
+    #obstacle {
+      width: 20px;
+      height: 20px;
+      background-color: #000;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="dino"></div>
+    <div id="obstacle"></div>
+  </div>
+  <button onclick="startGame()">Start</button>
+  <button onclick="endGame()">End</button>
+
+  <script>
+    const gameContainer = document.getElementById('game-container');
+    const dino = document.getElementById('dino');
+    const obstacle = document.getElementById('obstacle');
+    let isJumping = false;
+    let gravity = 0.9;
+    let dinoBottom = 0;
+    let obstacleRight = 0;
+    let obstacleInterval;
+
+    function startGame() {
+      gameContainer.style.border = '2px solid black';
+      document.body.onkeydown = handleKeyPress;
+      obstacleInterval = setInterval(moveObstacle, 20);
+    }
+
+    function endGame() {
+      clearInterval(obstacleInterval);
+      alert('Game Over');
+      location.reload();
+    }
+
+    function handleKeyPress(e) {
+      if (e.keyCode === 32) {
+        if (!isJumping) {
+          isJumping = true;
+          jump();
+        }
+      }
+    }
+
+    function jump() {
+      let count = 0;
+      let jumpInterval = setInterval(function () {
+        if (count === 15) {
+          clearInterval(jumpInterval);
+          let fallInterval = setInterval(function () {
+            if (count === 0) {
+              clearInterval(fallInterval);
+              isJumping = false;
+            }
+            if (dinoBottom > 0) {
+              dinoBottom -= 5;
+              dino.style.bottom = dinoBottom + 'px';
+            }
+            count--;
+          }, 20);
+        }
+        if (count < 10) {
+          dinoBottom += 5;
+          dino.style.bottom = dinoBottom + 'px';
+        }
+        count++;
+      }, 20);
+    }
+
+    function moveObstacle() {
+      obstacleRight += 2;
+      obstacle.style.right = obstacleRight + 'px';
+
+      if (obstacleRight > 300) {
+        clearInterval(obstacleInterval);
+        obstacle.style.display = 'none';
+      }
+
+      if (obstacleRight > 50 && obstacleRight < 100) {
+        const dinoLeft = dino.getBoundingClientRect().left;
+        const dinoTop = dino.getBoundingClientRect().top;
+        const obstacleLeft = obstacle.getBoundingClientRect().left;
+        const obstacleTop = obstacle.getBoundingClientRect().top;
+
+        if (
+  dinoLeft < obstacleLeft + obstacle.offsetWidth &&
+  dinoLeft + dino.offsetWidth > obstacleLeft &&
+  dinoBottom < obstacleBottom + obstacle.offsetHeight &&
+  dinoBottom + dino.offsetHeight > obstacleBottom
+) {
+  endGame();
+}
+
+      }
+    }
+  </script>
+</body>
+</html>
