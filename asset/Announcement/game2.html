@@ -1,125 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    #game-container {
-      position: relative;
-      width: 400px;
-      height: 150px;
-      margin: 0 auto;
-      border: 2px solid black;
-      overflow: hidden;
-    }
-
-    #dino {
-      width: 50px;
-      height: 50px;
-      background-color: #f00;
-      position: absolute;
-      bottom: 0;
-      left: 50px;
-    }
-
-    #obstacle {
-      width: 20px;
-      height: 20px;
-      background-color: #000;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Document</title>
 </head>
 <body>
-  <div id="game-container">
-    <div id="dino"></div>
-    <div id="obstacle"></div>
-  </div>
-  <button onclick="startGame()">Start</button>
-  <button onclick="endGame()">End</button>
 
-  <script>
-    const gameContainer = document.getElementById('game-container');
-    const dino = document.getElementById('dino');
-    const obstacle = document.getElementById('obstacle');
-    let isJumping = false;
-    let gravity = 0.9;
-    let dinoBottom = 0;
-    let obstacleRight = 0;
-    let obstacleInterval;
+    <canvas id="canvas"></canvas>
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="stopGame()">Stop Game</button>
 
-    function startGame() {
-      gameContainer.style.border = '2px solid black';
-      document.body.onkeydown = handleKeyPress;
-      obstacleInterval = setInterval(moveObstacle, 20);
-    }
+    <script type="text/javascript">
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var animation;
+        var frameRate = 60;
 
-    function endGame() {
-      clearInterval(obstacleInterval);
-      alert('Game Over');
-      location.reload();
-    }
+        canvas.width = window.innerWidth - 100;
+        canvas.height = window.innerHeight - 200;
 
-    function handleKeyPress(e) {
-      if (e.keyCode === 32) {
-        if (!isJumping) {
-          isJumping = true;
-          jump();
+        // ... Rest of the code remains the same
+
+        // Function to start the game
+        function startGame() {
+            executePerFrame();
         }
-      }
-    }
 
-    function jump() {
-      let count = 0;
-      let jumpInterval = setInterval(function () {
-        if (count === 15) {
-          clearInterval(jumpInterval);
-          let fallInterval = setInterval(function () {
-            if (count === 0) {
-              clearInterval(fallInterval);
-              isJumping = false;
+        // Function to stop the game
+        function stopGame() {
+            cancelAnimationFrame(animation);
+        }
+
+        // Dinosaur
+        var dino = {
+            x: 10,
+            y: 300, // 공룡 등장 좌표
+            width: 50,
+            height: 50, // 공룡 크기
+            draw: function () {
+                ctx.fillStyle = "#FF0000"; // Red color
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            },
+        };
+
+        // Cactus
+        function Cactus() {
+            this.x = 500;
+            this.y = 325;
+            this.width = 25;
+            this.height = 25;
+        }
+        Cactus.prototype.draw = function () {
+            ctx.fillStyle = "#00FF00"; // Green color
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        };
+
+        var timer = 0;
+        var cactuses = []; // 장애물 여러 개를 관리하기 위한 배열
+        var jumpTimer = 0;
+        var animation;
+
+      // Function to start the game
+      function startGame() {
+            executePerFrame();
+        }
+
+        // Function to stop the game
+        function stopGame() {
+            cancelAnimationFrame(animation);
+        }
+
+        // 프레임마다 실행할 함수(실행 횟수는 모니터 FPS에 따라 다름)
+        function executePerFrame() {
+            animation = requestAnimationFrame(executePerFrame);
+            // 여기 안에 있는게 프레임마다 실행됨
+            timer++;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (timer % 240 === 0) {
+                // 120 프레임마다 장애물 생성하고 array에 집어넣음
+                var cactus = new Cactus();
+                cactuses.push(cactus);
             }
-            if (dinoBottom > 0) {
-              dinoBottom -= 5;
-              dino.style.bottom = dinoBottom + 'px';
+
+            // array에 있는거 한 번에 draw
+            cactuses.forEach(function (a, i, o) {
+                // x 좌표가 0 미만이면 제거
+                if (a.x < 0) {
+                    o.splice(i, 1);
+                }
+                a.x -= 2;
+
+                isBumped(dino, a); // 충돌 체크는 여기서. 공룡과 모든 장애물을 충돌 체크 해야 되기 때문
+
+                a.draw();
+            });
+
+            if (jump == true) {
+                dino.y -= 2; // 점프 속도 조절 가능
+                jumpTimer++; // 점프 시 프레임마다 +1
             }
-            count--;
-          }, 20);
+            if (jump == false) {
+                if (dino.y < 300) {
+                    dino.y += 2;
+                }
+            }
+            if (jumpTimer > 40) {
+                jump = false;
+                jumpTimer = 0;
+            }
+
+            dino.draw();
         }
-        if (count < 10) {
-          dinoBottom += 5;
-          dino.style.bottom = dinoBottom + 'px';
+        executePerFrame();
+
+        // 충돌 확인
+        function isBumped(dino, cactus) {
+            var xDif = cactus.x - (dino.x + dino.width);
+            var yDif = cactus.y - (dino.y + dino.height);
+            if (xDif < 0 && yDif < 0) {
+                // ctx.clearRect(0, 0, canvas.width, canvas.height);
+                cancelAnimationFrame(animation); // 애니메이션 중단
+            }
         }
-        count++;
-      }, 20);
-    }
 
-    function moveObstacle() {
-      obstacleRight += 2;
-      obstacle.style.right = obstacleRight + 'px';
+        var jump = false;
+        // 스페이스바 누르면 점프
+        document.addEventListener("keydown", function (e) {
+            if (e.code === "Space") {
+                jump = true;
+            }
+        });
 
-      if (obstacleRight > 300) {
-        clearInterval(obstacleInterval);
-        obstacle.style.display = 'none';
-      }
+    </script>
 
-      if (obstacleRight > 50 && obstacleRight < 100) {
-        const dinoLeft = dino.getBoundingClientRect().left;
-        const dinoTop = dino.getBoundingClientRect().top;
-        const obstacleLeft = obstacle.getBoundingClientRect().left;
-        const obstacleTop = obstacle.getBoundingClientRect().top;
-
-        if (
-  dinoLeft < obstacleLeft + obstacle.offsetWidth &&
-  dinoLeft + dino.offsetWidth > obstacleLeft &&
-  dinoBottom < obstacleBottom + obstacle.offsetHeight &&
-  dinoBottom + dino.offsetHeight > obstacleBottom
-) {
-  endGame();
-}
-
-      }
-    }
-  </script>
 </body>
 </html>
