@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OX 퀴즈</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .options {
+            display: flex;
+        }
+        .option {
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .result {
+            font-size: 16px;
+            font-weight: bold;
+            color: blue;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Q1 -->
+    <div class="question" id="question1">Q1. Tumblers គឺមានភាពស្និទ្ធស្នាលនឹងបរិស្ថានជាងផលិតផលដែលអាចចោលបាន ដូច្នេះវាជាការល្អក្នុងការទិញដុំពកច្រើន។ <br>텀블러는 일회용품 사용보다 친환경적이므로, 여러 개 구비해둔다.</div>
+    <div class="options" id="options1">
+        <div class="option" data-question="1" data-answer="X">O</div>
+        <div class="option" data-question="1" data-answer="O">X</div>
+    </div>
+    <div class="result" id="result1">ត្រូវហើយ! 정답입니다!</div>
+    <br>
+
+    <!-- Q2 -->
+    <div class="question" id="question2">Q2. ការមើលវីដេអូនៅលើទូរស័ព្ទដៃក្នុងរយៈពេលយូរមិនទាក់ទងនឹងការបំពុលបរិស្ថានទេ។ <br>휴대폰으로 동영상을 오래 시청하는 것은 환경오염과 관련이 없다. </div>
+    <div class="options" id="options2">
+        <div class="option" data-question="2" data-answer="X">O</div>
+        <div class="option" data-question="2" data-answer="O">X</div>
+    </div>
+    <div class="result" id="result2">ត្រូវហើយ! 정답입니다!</div>
+    <br>
+
+    <!-- Q3 -->
+    <div class="question" id="question3">Q3. សត្វដែលប្រើជាអាហារបញ្ចេញឧស្ម័នផ្ទះកញ្ចក់។ <br>식자재로써 사육되는 동물은 온실가스를 배출한다. </div>
+    <div class="options" id="options3">
+        <div class="option" data-question="3" data-answer="O">O</div>
+        <div class="option" data-question="3" data-answer="X">X</div>
+    </div>
+    <div class="result" id="result3">ត្រូវហើយ! 정답입니다!</div>
+    <br>
+
+    <!-- Q4 -->
+    <div class="question" id="question4">Q4. សាប៊ូកក់សក់ដែលយើងប្រើមិ
+    <div class="options" id="options4">
+        <div class="option" data-question="4" data-answer="X">O</div>
+        <div class="option" data-question="4" data-answer="O">X</div>
+    </div>
+    <div class="result" id="result4">ត្រូវហើយ! 정답입니다!</div>
+    <br>
+
+    <!-- Q5 -->
+    <div class="question" id="question5">Q5. នៅពេលដែលការបញ្ចេញកាបូនកើនឡើង កម្រិតទឹកសមុទ្រកើនឡើង និងការឡើងកំដៅផែនដីកើតឡើង។ <br>탄소 배출량이 늘어나면 해수면이 상승하고, 지구온난화가 일어난다.</div>
+    <div class="options" id="options5">
+        <div class="option" data-question="5" data-answer="O">O</div>
+        <div class="option" data-question="5" data-answer="X">X</div>
+    </div>
+    <div class="result" id="result5">ត្រូវហើយ! 정답입니다!</div>
+    <br>
+
+    <script>
+        const options = document.querySelectorAll('.option');
+        
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                const questionNumber = option.getAttribute('data-question');
+                const answer = option.getAttribute('data-answer');
+                const resultElement = document.getElementById(`result${questionNumber}`);
+
+                // 사용자가 선택한 답과 정답 비교
+                if (answer === "O") {
+                    resultElement.innerHTML = "ត្រូវហើយ! 정답입니다!";
+                    resultElement.style.display = 'block'; // 결과 메시지 표시
+                } else {
+                    resultElement.innerHTML = "ខុស! 오답입니다!";
+                    resultElement.style.display = 'block'; // 결과 메시지 표시
+                }
+
+                // 선택된 답안 스타일 변경
+                const optionsElement = document.getElementById(`options${questionNumber}`);
+                optionsElement.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -84,7 +84,7 @@
 
     function endGame() {
       isGameOver = true;
-      alert('게임 종료! 최종 점수: ' + score);
+      alert('Game Over! Total Score: ' + score);
       window.location.reload();
     }
 
@@ -143,7 +143,7 @@
           poop.remove();
         }
 
-        if (topPosition > 800) { //더 많은 개수가 떨어지게
+        if (topPosition > 500) { //더 많은 개수가 떨어지게
           clearInterval(poopInterval);
           poop.remove();
         }
