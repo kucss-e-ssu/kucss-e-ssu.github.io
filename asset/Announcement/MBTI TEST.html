@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ECO MBTI 테스트</title>
+    <p>តើ ECO MBTI របស់អ្នកគឺជាអ្វី? អានសំណួរ និងពិនិត្យមើលចម្លើយដែលអនុវត្តចំពោះអ្នក! <br>여러분의 ECO MBTI는 무엇일까요? 문제를 읽고 'YES'와 'NO' 중, 자신에게 해당된다고 생각되는 것에 체크하세요!</p>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+        }
+        .option {
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MBTI 테스트</h1>
+        <form id="mbtiForm">
+            <!-- E/I Dimension -->
+            <div class="question" id="question1">Q1. 환경 수업 시간에 신나서 춤을 추거나 세레모니를 한 적이 있다.</div>
+            <div class="options" id="options1">
+                <input type="radio" name="q1" value="E" required>YES
+                <input type="radio" name="q1" value="I">NO
+            </div>
+            <br>
+            <div class="question" id="question2">Q2. 집에서 반려식물에게 물을 주는 것보다 친구들과 산에 놀러가는 것이 좋다.</div>
+            <div class="options" id="options2">
+                <input type="radio" name="q2" value="E" required>YES
+                <input type="radio" name="q2" value="I">NO
+            </div>
+            <br>
+            <div class="question" id="question3">Q3. 환경 선생님들에게 다가가서 대화를 시작하기가 어렵지 않다.</div>
+            <div class="options" id="options3">
+                <input type="radio" name="q3" value="E" required>YES
+                <input type="radio" name="q3" value="I">NO
+            </div>
+            <br>
+            <!-- S/N Dimension -->
+            <div class="question" id="question4">Q4. 환경과 관련된 세부적인 사항에 집중하기 보다는 멀리서 다양한 각도로 문제를 지켜보며 해결책을 찾는 것이 중요하다고 생각한다.</div>
+            <div class="options" id="options4">
+                <input type="radio" name="q4" value="N" required>YES
+                <input type="radio" name="q4" value="S">NO
+            </div>
+            <br>
+            <div class="question" id="question5">Q5. 환경 문제에 관해서 실용적인 것과 현실적인 것을 중심으로 대안을 찾는 것이 중요하다고 생각한다.</div>
+            <div class="options" id="options5">
+                <input type="radio" name="q5" value="S" required>YES
+                <input type="radio" name="q5" value="N">NO
+            </div>
+            <br>
+            <div class="question" id="question6">Q6. 지속적으로 환경을 보다 나은 방향으로 발전시킬 수 있는 새로운 아이디어가 떠오른다.</div>
+            <div class="options" id="options6">
+                <input type="radio" name="q6" value="N" required>YES
+                <input type="radio" name="q6" value="S">NO
+            </div>
+            <br>
+            <!-- T/F Dimension -->
+            <div class="question" id="question7">Q7. 환경에 관한 논리적인 분석을 좋아한다.</div>
+            <div class="options" id="options7">
+                <input type="radio" name="q7" value="T" required>YES
+                <input type="radio" name="q7" value="F">NO
+            </div>
+            <br>
+            <div class="question" id="question8">Q8. 정크아트의 감상과 해석에 흥미가 있다.</div>
+            <div class="options" id="options8">
+                <input type="radio" name="q8" value="F" required>YES
+                <input type="radio" name="q8" value="T">NO
+            </div>
+            <br>
+            <div class="question" id="question9">Q9. 교내 쓰레기 무단투기 문제에 관해 냉철하게 상황을 파악하고 논리와 원칙에 따라 분석적으로 문제해결을 하고자 한다.</div>
+            <div class="options" id="options9">
+                <input type="radio" name="q9" value="T" required>YES
+                <input type="radio" name="q9" value="F">NO
+            </div>
+            <br>
+            <!-- P/J Dimension -->
+            <div class="question" id="question10">Q10. 플로깅을 할 때 언제 할 지 계획을 세우기보다는, 유연하게 하고 싶을 때 하는 것을 선호한다.</div>
+            <div class="options" id="options10">
+                <input type="radio" name="q10" value="P" required>YES
+                <input type="radio" name="q10" value="J">NO
+            </div>
+            <br>
+            <div class="question" id="question11">Q11. 호기심이 많으며, 환경 수업 시간에 새로운 것을 배우는 것이 좋다.</div>
+            <div class="options" id="options11">
+                <input type="radio" name="q11" value="P" required>YES
+                <input type="radio" name="q11" value="J">NO
+            </div>
+            <br>
+            <div class="question" id="question12">Q12. 수업을 듣고, 환경 보호를 위해 스스로 실천할 수 있는 일들에 대한 계획을 세운 적 있다.</div>
+            <div class="options" id="options12">
+                <input type="radio" name="q12" value="J" required>YES
+                <input type="radio" name="q12" value="P">NO
+            </div>
+            <br>
+            <button type="submit" class="option">ពិនិត្យលទ្ធផល<br>결과 보기</button>
+        </form>
+    </div>
+
+    <script>
+        const mbtiForm = document.getElementById("mbtiForm");
+        mbtiForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // 각 차원의 답변을 가져와서 MBTI 유형 계산
+            const eOrI = document.querySelector('input[name="q1"]:checked').value;
+            const sOrN = document.querySelector('input[name="q4"]:checked').value;
+            const tOrF = document.querySelector('input[name="q7"]:checked').value;
+            const pOrJ = document.querySelector('input[name="q10"]:checked').value;
+
+            // MBTI 유형 계산
+            const mbtiType = eOrI + sOrN + tOrF + pOrJ;
+
+            // 결과 표시
+            alert(`ប្រភេទ ECO MBTI របស់អ្នកគឺ ${mbtiType}។! 당신의 ECO MBTI 유형은 ${mbtiType}입니다!`);
+        });
+    </script>
+</body>
+</html>
