@@ -22,14 +22,39 @@
       text-decoration: none;
       color: inherit;
     }
+
     #canvas {
             border: 2px solid black;
             display: block;
             margin: 0 auto;
         }
+
+        .cactus {
+        position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background-image: url('/images/trash.png');
+      background-size: cover;
+    }
+
+    .dino {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background-image: url('/images/ggrobee-removebg.jpg');
+      background-size: cover;
+    }
+
   </style>
 <body>
-<h1>공룡게임</h1>
+<h1 class="text-center">Dino Game</h1>
+<hr>
 <div class="score">
     <h2>Score: <span id="score">0</span></h2>
   </div>
@@ -43,6 +68,8 @@
             <button onclick="stopGame()" class="btn btn-danger me-3">Stop Game</button>
             <button onclick="resetGame()" class="btn btn-secondary">Reset</button>
         </div>
+
+    <div style="margin-top: 300px;"></div>
     </div>
 
     <script type="text/javascript">
@@ -71,33 +98,37 @@
             ctx.fillStyle = "#FFFFFF";
             ctx.font = "30px Arial";
             ctx.fillText("Game Over", canvas.width / 2 - 80, canvas.height / 2);
-        }
-        // Dinosaur
-        var dino = {
-            x: 10,
-            y: 300, // 공룡 등장 좌표
-            width: 50,
-            height: 50, // 공룡 크기
-            draw: function () {
-                ctx.fillStyle = "#FF0000"; // Red color
-                ctx.fillRect(this.x, this.y, this.width, this.height);
-            },
-        };
+            alert('Game Over! Total Score: ' + score);
 
-        // Cactus
-        class Cactus {
-            constructor() {
-                this.x = canvas.width;
-                this.y = 325;
-                this.width = 25;
-                this.height = 25;
-            }
-
-            draw() {
-                ctx.fillStyle = "#00FF00"; // Green color
-                ctx.fillRect(this.x, this.y, this.width, this.height);
-            }
         }
+            // Dinosaur
+    var dino = {
+        x: 5,
+        y: 300, // 공룡 등장 좌표
+        width: 50,
+        height: 50, // 공룡 크기
+        draw: function () {
+            var img = new Image();
+            img.src = '/images/ggrobee-removebg.jpg'; // 공룡 이미지 경로
+            ctx.drawImage(img, this.x, this.y, this.width, this.height);
+        },
+    };
+
+    // Cactus
+    class Cactus {
+        constructor() {
+            this.x = canvas.width;
+            this.y = 300;
+            this.width = 30;
+            this.height = 40;
+        }
+
+        draw() {
+            var img = new Image();
+            img.src = '/images/trash.png'; // 선인장 이미지 경로
+            ctx.drawImage(img, this.x, this.y, this.width, this.height);
+        }
+    }
 
         var timer = 0;
         var cactuses = []; // 장애물 여러 개를 관리하기 위한 배열
