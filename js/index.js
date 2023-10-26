@@ -1,7 +1,6 @@
 GGrobee = document.querySelector('#GGrobee');
 About = document.querySelector('#About');
 What = document.querySelector('#What');
-SDGS = document.querySelector('#SDGS');
 Com = document.querySelector('#Com');
 anc = document.querySelector('#anc');
 
@@ -18,10 +17,6 @@ About.addEventListener('click', function() {
 
 What.addEventListener('click', function() {
     iframe.src = 'asset/pollution.html';
-});
-
-SDGS.addEventListener('click', function() {
-  iframe.src = 'asset/sdgs.html';
 });
 
 Com.addEventListener('click', function() {
