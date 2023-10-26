@@ -51,6 +51,18 @@
       background-size: cover;
     }
 
+    .game-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+  background-image: url('/images/game2-bg.jpeg'); /* 이미지 파일의 경로를 정확히 지정해야 합니다. */
+  background-size: cover; /* 배경 이미지를 컨테이너에 맞춰 확대/축소합니다. */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
   </style>
 <body>
 <h1 class="text-center">Dino Game</h1>
@@ -58,10 +70,10 @@
 <div class="score">
     <h2>Score: <span id="score">0</span></h2>
   </div>
-    <div class="container">
-        <div id="gameFrame" class="d-flex justify-content-center align-items-center" style="height: 600px;">
-            <canvas id="canvas" width="600" height="400"></canvas>
-        </div>
+  
+  <div class="game-container" style="position: relative; width: 400; height: 403px; border: 2px solid black; background-image: url('/images/game2-bg.jpeg'); background-size: cover; display: flex; justify-content: center; align-items: flex-end;">
+    <canvas id="canvas" width="400" height="400"></canvas>
+  </div>
 
         <div class="d-flex justify-content-center mt-3">
             <button onclick="startGame()" class="btn btn-primary me-3">Start Game</button>
@@ -69,7 +81,7 @@
             <button onclick="resetGame()" class="btn btn-secondary">Reset</button>
         </div>
 
-    <div style="margin-top: 300px;"></div>
+    <div style="margin-top: 400px;"></div>
     </div>
 
     <script type="text/javascript">
@@ -102,23 +114,23 @@
 
         }
             // Dinosaur
-    var dino = {
-        x: 5,
-        y: 300, // 공룡 등장 좌표
-        width: 50,
-        height: 50, // 공룡 크기
-        draw: function () {
-            var img = new Image();
-            img.src = '/images/ggrobee-removebg.jpg'; // 공룡 이미지 경로
-            ctx.drawImage(img, this.x, this.y, this.width, this.height);
-        },
+            var dino = {
+      x: 0,
+      y: 330, // 공룡 등장 좌표
+      width: 50,
+      height: 50, // 공룡 크기
+      draw: function () {
+          var img = new Image();
+          img.src = '/images/ggrobee-removebg.jpg'; // 공룡 이미지 경로
+          ctx.drawImage(img, this.x, this.y, this.width, this.height);
+      },
     };
 
     // Cactus
     class Cactus {
         constructor() {
             this.x = canvas.width;
-            this.y = 300;
+            this.y = 350;
             this.width = 30;
             this.height = 40;
         }
@@ -167,7 +179,7 @@
                 jumpTimer++; // 점프 시 프레임마다 +1
             }
             if (jump == false) {
-                if (dino.y < 300) {
+                if (dino.y < 340) {
                     dino.y += 2;
                 }
             }

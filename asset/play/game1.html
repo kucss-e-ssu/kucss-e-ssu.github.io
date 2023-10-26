@@ -8,6 +8,7 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
   <style>
     .fbox1 a {
       color: #000;
@@ -29,15 +30,16 @@
         }
 
         .game-container {
-      position: relative;
-      width: 400px;
-      height: 350px;
-      border: 2px solid black;
-      background-color: #f1f3f5;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
+  position: relative;
+  width: 400px;
+  height: 550px;
+  border: 2px solid black;
+  background-image: url('/images/game1-bg.jpeg'); /* 이미지 파일의 경로를 정확히 지정해야 합니다. */
+  background-size: cover; /* 배경 이미지를 컨테이너에 맞춰 확대/축소합니다. */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
     .player {
       position: absolute;
@@ -62,8 +64,8 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
+      width: 40px;
+      height: 40px;
       background-image: url('/images/eco.png');
       background-size: cover;
     }
@@ -81,9 +83,10 @@
 
     .score {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 15px;
+      top: 5px;
+      right: 30px; /* 오른쪽 여백을 조정합니다. */
+      font-size: 20px;
+      font-family: 'Acme', sans-serif; /* Acme 또는 Press Start 2P와 같은 픽셀 스타일 글꼴을 설정합니다. */
     }
 
     .btn {
@@ -116,11 +119,10 @@
 </head>
 <body style="touch-action: none; overflow: scroll;">
     <h1 class="text-center">Avoid Trash Game</h1>
-    <hr>
-    <div class="score">점수: 0</div>
 
   <div class="game-container">
     <div class="player"></div>
+    <div class="score">점수: 0</div>
   </div>
 
   <div class="button-container">
@@ -155,7 +157,7 @@
       const isBlue = Math.random() >= 0.5;
       poop.classList.add('poop', isBlue ? 'blue' : 'red');
       gameContainer.appendChild(poop);
-      const randomPosition = Math.floor(Math.random() * 300);
+      const randomPosition = Math.floor(Math.random() * 450);
       poop.style.left = randomPosition + 'px';
       poops.push(poop);
       movePoop(poop, isBlue);
@@ -184,7 +186,7 @@
 
     function moveRight() {
       let leftPosition = parseInt(window.getComputedStyle(player).getPropertyValue('left'));
-      if (leftPosition < 300) {
+      if (leftPosition < 350) {
         player.style.left = leftPosition + 10 + 'px';
       }
     }
@@ -205,7 +207,7 @@
           poop.remove();
         }
 
-        if (topPosition > 300) { //더 많은 개수가 떨어지게
+        if (topPosition > 500) { //더 많은 개수가 떨어지게
           clearInterval(poopInterval);
           poop.remove();
         }

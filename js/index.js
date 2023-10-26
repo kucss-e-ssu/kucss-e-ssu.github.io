@@ -3,6 +3,7 @@ About = document.querySelector('#About');
 What = document.querySelector('#What');
 Com = document.querySelector('#Com');
 anc = document.querySelector('#anc');
+play = document.querySelector('#play');
 
 iframe = document.querySelector('#iframe');
 
@@ -25,4 +26,8 @@ Com.addEventListener('click', function() {
 
 anc.addEventListener('click', function() {
   iframe.src = 'asset/anc.html';
+});
+
+play.addEventListener('click', function() {
+  iframe.src = 'asset/play.html';
 });
